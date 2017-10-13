@@ -1,12 +1,15 @@
 {
   "name": "react-engine",
-  "version": "4.4.0",
+  "version": "5.0.0",
   "description": "a composite render engine for express apps to render both plain react views and react-router views",
   "main": "index.js",
+  "engines": {
+    "node": ">=6",
+    "npm": ">=3"
+  },
   "scripts": {
-    "test": "npm run tape",
-    "lint": "eslint .",
-    "tape": "tape test/*.js | faucet"
+    "test": "npm run lint && jest",
+    "lint": "eslint lib __tests__"
   },
   "repository": {
     "type": "git",
@@ -26,29 +29,57 @@
     "parent-require": "^1.0.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.3.26",
+    "babel-eslint": "^8.0.1",
+    "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.3.13",
     "babel-register": "^6.3.13",
-    "cheerio": "^0.20.0",
-    "eslint": "^2.13.1",
-    "eslint-config-airbnb": "^9.0.1",
-    "eslint-plugin-import": "^1.9.2",
-    "eslint-plugin-jsx-a11y": "^1.5.3",
-    "eslint-plugin-react": "^5.2.2",
+    "eslint": "^4.8.0",
+    "eslint-config-airbnb-base": "^12.0.2",
+    "eslint-plugin-import": "^2.7.0",
     "express": "^4.12",
-    "faucet": "0.0.1",
-    "jsdom": "^9.2.1",
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2",
-    "react-router": "^2.4.0",
-    "rewire": "^2.3.1",
-    "sinon": "^1.14.1",
-    "tape": "^4.6.0"
+    "jest": "^21.2.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-router": "^4.2.0"
   },
   "peerDependencies": {
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "react": "^16",
+    "react-dom": "^16"
   },
+  "jest": {
+    "verbose": true,
+    "testEnvironment": "node",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "lib/**/*.{js}"
+    ]
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": 6
+          }
+        }
+      ]
+    ]
+  },
+  "eslintConfig": {
+    "extends": "airbnb-base",
+    "parser": "babel-eslint",
+    "env": {
+      "node": true,
+      "jest": true
+    }
+  },
+   "eslintIgnore": [
+     "examples/movie catalog/node_modules",
+     "examples/movie catalog/public/bundle.js"
+   ],
   "keywords": [
     "react",
     "render",
